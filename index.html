@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carta de Amor - Para el Amor de Mi Vida</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 50%, #fecfef 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .question-section {
+            display: none;
+        }
+
+        .question-section.active {
+            display: block;
+            animation: fadeIn 0.8s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h1 {
+            color: #d63384;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            color: #495057;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+        }
+
+        .question {
+            font-size: 1.3em;
+            color: #6c757d;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .option {
+            background: #fff;
+            border: 2px solid #ffc0cb;
+            border-radius: 15px;
+            padding: 15px 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .option:hover {
+            background: #ffc0cb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 192, 203, 0.4);
+        }
+
+        .btn {
+            background: linear-gradient(45deg, #ff6b6b, #ffc0cb);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.2em;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 10px;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(255, 107, 107, 0.3);
+        }
+
+        .love-letter {
+            text-align: left;
+            line-height: 1.8;
+            font-size: 1.2em;
+            color: #495057;
+        }
+
+        .love-letter h2 {
+            text-align: center;
+            color: #d63384;
+            margin-bottom: 30px;
+        }
+
+        .signature {
+            text-align: right;
+            margin-top: 40px;
+            font-style: italic;
+            color: #d63384;
+            font-size: 1.3em;
+        }
+
+        .hearts {
+            font-size: 2em;
+            color: #ff6b6b;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .question {
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Sección de inicio -->
+        <div id="start" class="question-section active">
+            <h1>💖 Carta de Amor 💖</h1>
+            <div class="hearts">💕 ✨ 💕 ✨ 💕</div>
+            <p class="question">¡Hola mi amor! He preparado algo especial para ti. Responde estas preguntas desde el corazón...</p>
+            <button class="btn" onclick="nextSection('question1')">Comenzar 💝</button>
+        </div>
+
+        <!-- Pregunta 1 -->
+        <div id="question1" class="question-section">
+            <h2>Pregunta 1</h2>
+            <p class="question">¿Cuál fue el momento en que supiste que me amabas?</p>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(1, 'Desde la primera vez que nos vimos')">Desde la primera vez que nos vimos 👀</div>
+                <div class="option" onclick="selectAnswer(1, 'Cuando me hiciste reír sin parar')">Cuando me hiciste reír sin parar 😂</div>
+                <div class="option" onclick="selectAnswer(1, 'En nuestro primer beso')">En nuestro primer beso 💋</div>
+                <div class="option" onclick="selectAnswer(1, 'Poco a poco, cada día más')">Poco a poco, cada día más 🌱</div>
+            </div>
+            <button class="btn" onclick="nextSection('question2')" id="next1" style="display:none;">Siguiente 💖</button>
+        </div>
+
+        <!-- Pregunta 2 -->
+        <div id="question2" class="question-section">
+            <h2>Pregunta 2</h2>
+            <p class="question">¿Qué es lo que más amas de nuestra relación?</p>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(2, 'La confianza que tenemos')">La confianza que tenemos 🤝</div>
+                <div class="option" onclick="selectAnswer(2, 'Cómo nos divertimos juntos')">Cómo nos divertimos juntos 🎉</div>
+                <div class="option" onclick="selectAnswer(2, 'Que puedo ser yo mismo/a contigo')">Que puedo ser yo mismo/a contigo 🌟</div>
+                <div class="option" onclick="selectAnswer(2, 'Todo, eres perfecto/a')">Todo, eres perfecto/a ✨</div>
+            </div>
+            <button class="btn" onclick="nextSection('question3')" id="next2" style="display:none;">Siguiente 💕</button>
+        </div>
+
+        <!-- Pregunta 3 -->
+        <div id="question3" class="question-section">
+            <h2>Pregunta 3</h2>
+            <p class="question">¿Cuál es nuestro sueño juntos?</p>
+            <div class="options">
+                <div class="option" onclick="selectAnswer(3, 'Viajar por el mundo')">Viajar por el mundo 🌍</div>
+                <div class="option" onclick="selectAnswer(3, 'Formar una familia hermosa')">Formar una familia hermosa 👨‍👩‍👧‍👦</div>
+                <div class="option" onclick="selectAnswer(3, 'Crecer juntos cada día')">Crecer juntos cada día 🌳</div>
+                <div class="option" onclick="selectAnswer(3, 'Simplemente estar juntos para siempre')">Simplemente estar juntos para siempre ♾️</div>
+            </div>
+            <button class="btn" onclick="nextSection('letter')" id="next3" style="display:none;">Ver la Carta 💌</button>
+        </div>
+
+        <!-- Carta de amor -->
+        <div id="letter" class="question-section">
+            <div class="love-letter">
+                <h2>💌 Mi Carta de Amor Para Ti 💌</h2>
+                
+                <p>Mi querido/a amor,</p>
+                
+                <p>Mientras escribo estas palabras, mi corazón se llena de una calidez que solo tú puedes provocar. Cada día que pasa a tu lado es una nueva página en la historia más hermosa que he vivido.</p>
+                
+                <p>Eres la melodía que despierta mi alma cada mañana, la luz que ilumina mis días más grises, y la razón por la que sonrío sin darme cuenta. En tus ojos encuentro mi hogar, en tus brazos mi refugio, y en tu corazón mi eternidad.</p>
+                
+                <p>Has llegado a mi vida como una tormenta de estrellas, transformando todo a tu paso. Cada momento contigo es un regalo que atesoro, cada risa compartida es una joya que guardo en lo más profundo de mi ser.</p>
+                
+                <p>Quiero que sepas que mi amor por ti trasciende las palabras. Es un sentimiento que vive en cada latido de mi corazón, en cada suspiro, en cada pensamiento. Eres mi presente más preciado y mi futuro más deseado.</p>
+                
+                <p>Gracias por elegirme cada día, por amarme con mis virtudes y defectos, por hacer de nuestra historia algo único e irrepetible. Contigo he aprendido que el amor verdadero no es solo una emoción, sino una decisión diaria de elegir al otro.</p>
+                
+                <p>Te prometo seguir amándote con la misma intensidad con la que late mi corazón, cuidar nuestro amor como el tesoro más preciado, y construir junto a ti una vida llena de momentos inolvidables.</p>
+                
+                <p>Eres mi todo, mi siempre, mi para siempre.</p>
+                
+                <div class="hearts">💕 💖 💕 💖 💕</div>
+                
+                <div class="signature">
+                    Con todo mi amor,<br>
+                    Para el amor de mi vida ❤️
+                </div>
+            </div>
+            
+            <button class="btn" onclick="restart()">Leer Nuevamente 🔄</button>
+        </div>
+    </div>
+
+    <script>
+        let answers = {};
+
+        function nextSection(sectionId) {
+            // Ocultar todas las secciones
+            const sections = document.querySelectorAll('.question-section');
+            sections.forEach(section => {
+                section.classList.remove('active');
+            });
+
+            // Mostrar la sección seleccionada
+            setTimeout(() => {
+                document.getElementById(sectionId).classList.add('active');
+            }, 300);
+        }
+
+        function selectAnswer(questionNumber, answer) {
+            answers[questionNumber] = answer;
+            
+            // Remover selección previa
+            const options = document.querySelectorAll(`#question${questionNumber} .option`);
+            options.forEach(option => {
+                option.style.background = '#fff';
+                option.style.color = '#6c757d';
+            });
+
+            // Marcar opción seleccionada
+            event.target.style.background = '#ffc0cb';
+            event.target.style.color = '#d63384';
+            event.target.style.fontWeight = 'bold';
+
+            // Mostrar botón siguiente
+            document.getElementById(`next${questionNumber}`).style.display = 'inline-block';
+        }
+
+        function restart() {
+            answers = {};
+            
+            // Reiniciar todas las opciones
+            const options = document.querySelectorAll('.option');
+            options.forEach(option => {
+                option.style.background = '#fff';
+                option.style.color = '#6c757d';
+                option.style.fontWeight = 'normal';
+            });
+
+            // Ocultar botones siguiente
+            const nextButtons = document.querySelectorAll('[id^="next"]');
+            nextButtons.forEach(button => {
+                button.style.display = 'none';
+            });
+
+            // Volver al inicio
+            nextSection('start');
+        }
+
+        // Agregar animación de corazones flotantes
+        function createFloatingHeart() {
+            const heart = document.createElement('div');
+            heart.innerHTML = '💖';
+            heart.style.position = 'fixed';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            heart.style.opacity = Math.random();
+            heart.style.fontSize = Math.random() * 20 + 10 + 'px';
+            heart.style.pointerEvents = 'none';
+            heart.style.animation = 'float 4s ease-in-out infinite';
+            
+            document.body.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 4000);
+        }
+
+        // Crear corazones flotantes cada 3 segundos
+        setInterval(createFloatingHeart, 3000);
+
+        // Agregar CSS para animación de corazones flotantes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes float {
+                0% {
+                    transform: translateY(100vh) rotate(0deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: translateY(-10vh) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
